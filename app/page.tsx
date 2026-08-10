@@ -158,7 +158,7 @@ export default function Home() {
                 <a href="#proyek" className="rounded-full bg-gradient-to-r from-accent-400 to-violet-500 px-8 py-4 text-sm font-bold text-[#04141a] shadow-[0_0_30px_rgba(34,211,238,0.25)] transition-transform hover:scale-105">
                   Lihat Proyek
                 </a>
-                <a href="/cv-wahyu-suhardiyono.pdf" target="_blank" rel="noreferrer" className="rounded-full border border-foreground/15 bg-foreground/5 px-8 py-4 text-sm font-bold text-foreground transition-colors hover:bg-foreground/10">
+                <a href="/CV_Wahyu_Suhardiyono.pdf" target="_blank" rel="noreferrer" className="rounded-full border border-foreground/15 bg-foreground/5 px-8 py-4 text-sm font-bold text-foreground transition-colors hover:bg-foreground/10">
                   Lihat CV
                 </a>
               </div>
