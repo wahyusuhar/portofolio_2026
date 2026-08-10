@@ -60,6 +60,7 @@ export const projects: Project[] = [
     tags: ['Web', 'PHP', 'Edukasi'],
     cover: `${IMG}/dunia-online-academy-cover.png`,
     gallery: [`${IMG}/dunia-online-academy-cover.png`, `${IMG}/dunia-online-academy-gallery-1.png`],
+    demoUrl: 'https://web-pembelajaran-online.vercel.app/',
     description: [
       'Dunia Online Academy adalah platform belajar online yang menghadirkan materi pelajaran SD dalam bentuk video yang ringan dan menyenangkan, mulai dari IPA, PPKn, Bahasa Indonesia, hingga Matematika.',
       'Materi dikurasi dari berbagai sumber video edukasi dan disusun ulang dalam tampilan katalog yang rapi per mata pelajaran, lengkap dengan judul dan ringkasan singkat setiap topik.',
