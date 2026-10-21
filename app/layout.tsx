@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 
 const geistSans = Geist({
@@ -12,38 +12,16 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
-  subsets: ['latin'],
-})
-
 export const metadata: Metadata = {
   title: 'Wahyu Suhardiyono, S.Kom | Full Stack Laravel Developer',
   description:
-    'Portfolio Wahyu Suhardiyono, S.Kom — Full Stack Developer yang berfokus pada Laravel, membangun aplikasi web modern, aman, dan berperforma tinggi.',
+    'Portfolio Wahyu Suhardiyono, S.Kom — full stack developer Laravel dari Wonosobo yang membangun sistem keuangan BUMDes dan desa, website biro wisata Dieng, dan platform belajar untuk siswa SD.',
 }
-
-const themeInitScript = `
-  try {
-    var theme = localStorage.getItem('theme');
-    if (theme === 'dark') document.documentElement.classList.add('dark');
-  } catch (e) {}
-`
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="id">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-          rel="stylesheet"
-        />
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased bg-background text-foreground`}>
-        {children}
-      </body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   )
 }
