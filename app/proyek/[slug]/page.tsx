@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getProjectBySlug, projects } from '@/lib/projects'
 import ProjectGallery from '@/components/ProjectGallery'
+import ThemeToggle from '@/components/ThemeToggle'
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }))
@@ -27,42 +27,50 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   if (!project) notFound()
 
   return (
-    <div className="mx-auto min-h-screen w-full max-w-3xl px-6 sm:px-8">
-      <header className="flex items-center justify-between py-8">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
-          Wahyu Suhardiyono
-        </Link>
-        <Link href="/#proyek" className="text-sm text-foreground/60 transition-colors hover:text-foreground">
-          ← Kembali ke proyek
-        </Link>
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
+        <div className="flex w-full max-w-4xl items-center justify-between gap-3 rounded-full border border-black/[.08] bg-background/70 px-3 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:border-white/[.145] backdrop-blur-xl">
+          <Link href="/" className="pl-3 font-display text-base font-bold tracking-tight text-foreground">
+            Wahyu<span className="text-foreground/40">.</span>
+          </Link>
+          <Link
+            href="/#proyek"
+            className="flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-foreground/60 transition-colors hover:text-foreground"
+          >
+            ← Kembali ke Proyek
+          </Link>
+          <ThemeToggle />
+        </div>
       </header>
 
-      <main className="pb-24 pt-16">
-        <ul className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-foreground/50">
+      <main className="mx-auto w-full max-w-5xl px-4 pb-24 pt-32 sm:px-6">
+        <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
+            <span key={tag} className="rounded-full bg-foreground/5 px-3 py-1 font-mono text-[10px] uppercase tracking-tight text-foreground/60">
+              {tag}
+            </span>
           ))}
-        </ul>
+        </div>
 
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">{project.title}</h1>
-        <p className="mt-4 max-w-xl leading-7 text-foreground/60">{project.summary}</p>
+        <h1 className="mt-6 font-display text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">{project.title}</h1>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/60 sm:text-lg">{project.summary}</p>
 
         {project.demoUrl && (
           <a
             href={project.demoUrl}
             target="_blank"
             rel="noreferrer"
-            className="mt-8 inline-flex h-11 items-center rounded-full bg-foreground px-5 text-sm font-medium text-background transition-colors hover:bg-foreground/85"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105"
           >
-            Kunjungi Proyek
+            Kunjungi Proyek ↗︎
           </a>
         )}
 
-        <div className="relative mt-12 aspect-video overflow-hidden rounded-lg border border-black/[.08] dark:border-white/[.145]">
-          <Image src={project.cover} alt={project.title} fill priority sizes="(min-width: 768px) 704px, 100vw" className="object-cover" />
+        <div className="mt-10 overflow-hidden rounded-3xl border border-black/[.08] dark:border-white/[.145]">
+          <img src={project.cover} alt={project.title} className="aspect-video w-full object-cover" />
         </div>
 
-        <div className="mt-12 space-y-5 leading-7 text-foreground/70">
+        <div className="mt-12 space-y-5 text-base leading-8 text-foreground/70">
           {project.description.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
@@ -70,7 +78,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
         {project.gallery.length > 0 && (
           <div className="mt-16">
-            <h2 className="mb-6 text-xl font-semibold tracking-tight">Galeri</h2>
+            <h2 className="mb-6 font-display text-xl font-bold text-foreground">Galeri</h2>
             <ProjectGallery images={project.gallery} title={project.title} />
           </div>
         )}
