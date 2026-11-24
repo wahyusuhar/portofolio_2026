@@ -7,11 +7,71 @@ export type Project = {
   cover: string
   gallery: string[]
   demoUrl?: string
+  video?: { src: string; poster?: string }
+  note?: string
 }
 
 const IMG = '/image/projects'
+const VID = '/video/projects'
 
 export const projects: Project[] = [
+  {
+    slug: 'smart-waste',
+    title: 'Smart Waste — Sistem Pelaporan Sampah dengan Deteksi AI',
+    summary: 'Sistem pelaporan tumpukan sampah: warga melapor lewat web & aplikasi Android, kategori sampah dideteksi otomatis oleh model machine learning.',
+    tags: ['Laravel', 'Expo', 'Machine Learning'],
+    cover: `${IMG}/smart-waste-cover.png`,
+    gallery: [
+      `${IMG}/smart-waste-cover.png`,
+      `${IMG}/smart-waste-gallery-1.png`,
+      `${IMG}/smart-waste-gallery-2.png`,
+      `${IMG}/smart-waste-gallery-3.png`,
+      `${IMG}/smart-waste-mobile.png`,
+    ],
+    demoUrl: 'https://smart-waste-web1.vercel.app/',
+    video: { src: `${VID}/smart-waste-demo.webm`, poster: `${IMG}/smart-waste-cover.png` },
+    note: 'Database demo memakai MySQL free tier yang berakhir 21 Desember 2026, sehingga demo live bisa tidak aktif setelah tanggal tersebut. Video di bawah merekam alur aplikasi secara lengkap.',
+    description: [
+      'Smart Waste adalah sistem pelaporan tumpukan sampah yang saya bangun sebagai technical test Fullstack Developer. Warga cukup memotret tumpukan sampah, menandai lokasi GPS, lalu mengirim laporan — baik dari website maupun aplikasi Android.',
+      'Setiap foto diklasifikasikan oleh model machine learning (transfer learning MobileNetV2, dijalankan dengan FastAPI + LiteRT) menjadi organik, plastik, atau kertas sebagai saran kategori yang tetap bisa dikoreksi oleh pelapor maupun admin.',
+      'Di sisi admin tersedia dashboard ringkasan status laporan, grafik laporan per hari, filter dan pencarian laporan, detail laporan dengan peta lokasi (Leaflet + OpenStreetMap), riwayat perubahan status (Menunggu → Diproses → Selesai/Ditolak), serta manajemen pengguna.',
+      'Backend dibangun dengan Laravel 12 (Livewire + Tailwind) sekaligus menyediakan REST API bertoken Sanctum untuk aplikasi mobile Expo/React Native, dengan MySQL sebagai database dan Cloudinary untuk penyimpanan foto.',
+    ],
+  },
+  {
+    slug: 'smp-yppab',
+    title: 'Website Sekolah SMPS YPPAB Jambi',
+    summary: 'Website profil sekolah untuk SMPS YPPAB di Provinsi Jambi: profil, guru & staf, ekstrakurikuler, galeri, berita, hingga info pendaftaran murid baru.',
+    tags: ['Astro', 'Tailwind', 'TypeScript'],
+    cover: `${IMG}/smp-yppab-cover.png`,
+    gallery: [
+      `${IMG}/smp-yppab-cover.png`,
+      `${IMG}/smp-yppab-gallery-1.png`,
+      `${IMG}/smp-yppab-gallery-2.png`,
+      `${IMG}/smp-yppab-gallery-3.png`,
+      `${IMG}/smp-yppab-mobile.png`,
+    ],
+    demoUrl: 'https://web-smp-yppab.vercel.app/',
+    description: [
+      'Website profil untuk SMPS YPPAB, sekolah menengah pertama swasta di Provinsi Jambi, yang dirancang agar orang tua calon murid bisa mengenal sekolah dengan cepat: visi, keseharian belajar, ekstrakurikuler, fasilitas, hingga kontak sekolah.',
+      'Halaman beranda menampilkan hero slider, jawaban atas pertanyaan yang paling sering diajukan orang tua, daftar ekstrakurikuler berjalan, galeri kegiatan, dan ajakan menuju halaman Penerimaan Murid Baru (SPMB) yang berisi syarat berkas serta alur pendaftaran.',
+      'Dibangun dengan Astro dan Tailwind CSS sehingga halaman statis sangat ringan dan cepat dibuka di ponsel, lengkap dengan menu mobile, navigasi breadcrumb, dan perhatian pada aksesibilitas seperti tombol jeda animasi.',
+    ],
+  },
+  {
+    slug: 'speakup',
+    title: 'SpeakUp — Guru Privat Bahasa Inggris Berbasis AI',
+    summary: 'Aplikasi latihan speaking bahasa Inggris: pengguna "menelepon" guru AI dan bercakap langsung dengan suara, lengkap dengan transkrip percakapan.',
+    tags: ['Expo', 'React Native', 'Gemini AI'],
+    cover: `${IMG}/speakup-cover.png`,
+    gallery: [`${IMG}/speakup-cover.png`, `${IMG}/speakup-gallery-2.png`, `${IMG}/speakup-gallery-1.png`],
+    demoUrl: 'https://speakup-phi-one.vercel.app/onboarding',
+    description: [
+      'SpeakUp adalah aplikasi latihan berbicara bahasa Inggris dengan konsep telepon: pengguna menekan tombol "Telepon" dan langsung bercakap dengan Miss Rina, guru privat AI yang merespons dengan suara secara real-time.',
+      'Saat onboarding, pengguna mengisi nama panggilan, perkiraan kemampuan, tujuan belajar (ngobrol sehari-hari, pekerjaan, interview kerja, traveling, sekolah), dan target belajar per hari agar materi percakapan menyesuaikan kebutuhannya.',
+      'Dibangun dengan Expo dan React Native (berjalan di web maupun mobile) serta Google Gemini sebagai mesin percakapan suara. API key dan riwayat percakapan disimpan di perangkat pengguna, audio tidak disimpan, dan tersedia catatan privasi yang jelas sejak awal.',
+    ],
+  },
   {
     slug: 'bumdes-kragilan',
     title: 'Website & Sistem Keuangan BUMDes Kragilan',

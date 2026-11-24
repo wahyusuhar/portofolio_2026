@@ -24,7 +24,7 @@ import { projects } from '@/lib/projects'
 import { publications } from '@/lib/publications'
 
 const DEFAULT_IMAGE = '/profile-fallback.svg'
-const PROFILE_IMAGE = '/image/foto_pribadi.png'
+const PROFILE_IMAGE = '/image/foto_profil.jpeg'
 
 const skills = [
   { name: 'Laravel', icon: siLaravel },
@@ -579,5 +579,6 @@ export default function Home() {
       </AnimatePresence>
     </div>
     </MotionConfig>
-  )
+
+)
 }

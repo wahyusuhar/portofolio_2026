@@ -70,11 +70,36 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <img src={project.cover} alt={project.title} className="aspect-video w-full object-cover" />
         </div>
 
+        {project.note && (
+          <p className="mt-6 rounded-2xl border border-black/[.08] bg-foreground/[.03] px-5 py-4 text-sm leading-relaxed text-foreground/70 dark:border-white/[.145]">
+            <span className="font-bold text-foreground">Catatan: </span>
+            {project.note}
+          </p>
+        )}
+
         <div className="mt-12 space-y-5 text-base leading-8 text-foreground/70">
           {project.description.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </div>
+
+        {project.video && (
+          <div className="mt-16">
+            <h2 className="mb-6 font-display text-xl font-bold text-foreground">Video Demo</h2>
+            <div className="overflow-hidden rounded-3xl border border-black/[.08] bg-black dark:border-white/[.145]">
+              <video
+                src={project.video.src}
+                poster={project.video.poster}
+                controls
+                playsInline
+                preload="none"
+                className="aspect-video w-full"
+              >
+                Browser Anda tidak mendukung pemutaran video.
+              </video>
+            </div>
+          </div>
+        )}
 
         {project.gallery.length > 0 && (
           <div className="mt-16">
